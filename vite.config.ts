@@ -4,6 +4,7 @@ import path from 'path';
 
 // https://vitejs.dev/config/
 export default defineConfig({
+  base: '/naughty-nice-chatbot-dec-1-2024/',
   plugins: [react()],
   optimizeDeps: {
     exclude: ['lucide-react'],
