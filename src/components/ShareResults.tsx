@@ -8,7 +8,7 @@ interface ShareResultsProps {
 
 export function ShareResults({ score, finalVerdict }: ShareResultsProps) {
   const handleShare = async () => {
-    const shareText = `🎅 Santa's Verdict: ${finalVerdict}\n🎄 My Naughty-Nice Score: ${score}/100\n\nFind out your score at [Your App URL]`;
+    const shareText = `🎅 Santa's Verdict: ${finalVerdict}\n🎄 My Naughty-Nice Score: ${score}/100\n\nFind out your score at ${window.location.href}`;
     
     try {
       if (navigator.share) {
