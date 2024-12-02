@@ -2,10 +2,8 @@ import React, { useState, useCallback } from 'react';
 import { ChatWindow } from './components/ChatWindow';
 import { ScoreDisplay } from './components/ScoreDisplay';
 import { ShareResults } from './components/ShareResults';
-import { Footer } from './components/Footer';
 import { Message } from './types';
 import { analyzeResponse, getNextQuestion, generateResponse } from './utils/chatLogic';
-import backgroundImage from './components/background.jpg';
 
 function App() {
   const [messages, setMessages] = useState<Message[]>([{
@@ -26,14 +24,14 @@ function App() {
     setMessages(newMessages);
     setUserInput('');
 
-    const currentQuestion = getNextQuestion(questionIndex, score);
+    const currentQuestion = getNextQuestion(questionIndex);
     
     if (currentQuestion) {
       const responseScore = analyzeResponse(userInput, currentQuestion);
       setScore(prevScore => Math.min(100, Math.max(0, prevScore + (responseScore - 10))));
     }
 
-    const nextQuestion = getNextQuestion(questionIndex + 1, score);
+    const nextQuestion = getNextQuestion(questionIndex + 1);
     const isLast = !nextQuestion;
     
     try {
@@ -68,7 +66,7 @@ function App() {
   };
 
   return (
-    <div className="min-h-screen bg-cover bg-fixed" style={{ backgroundImage: `url(${backgroundImage})` }}>
+    <div className="min-h-screen bg-[url('https://images.unsplash.com/photo-1544885935-98dd03b09034?q=80&w=1920')] bg-cover bg-fixed">
       <div className="min-h-screen bg-black/50 py-8 px-4">
         <div className="max-w-2xl mx-auto space-y-4">
           <ScoreDisplay score={score} />
@@ -86,7 +84,6 @@ function App() {
             </div>
           )}
         </div>
-        <Footer />
       </div>
     </div>
   );
